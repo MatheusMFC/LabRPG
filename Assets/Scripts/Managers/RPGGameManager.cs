@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RPGGameManager : MonoBehaviour
 {
+    private static int fase = 1;
     public static RPGGameManager instanciaCompartilhada = null;
     public RPGCameraManager cameraManager;
     public PontoSpawn playerPontoSpawn;
@@ -41,5 +43,28 @@ public class RPGGameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public static void GerenciadorDeCena()
+    {
+        switch (fase)
+        {
+            case 1:
+                fase = 2;
+                SceneManager.LoadScene("Fase12");
+                break;
+            case 2:
+                fase = 3;
+                SceneManager.LoadScene("Fase23");
+                break;
+            case 3:
+                fase = 1;
+                SceneManager.LoadScene("MissaoCumprida");
+                break;
+            default:
+                fase = 1;
+                SceneManager.LoadScene("Lab5");
+                break;
+        }
     }
 }

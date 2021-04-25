@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : Caractere
 {
@@ -54,6 +55,7 @@ public class Player : Caractere
         base.KillCaractere();
         Destroy(healthBar.gameObject);
         Destroy(inventario.gameObject);
+        SceneManager.LoadScene("GameOver");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -68,6 +70,26 @@ public class Player : Caractere
                 switch (DanoObjeto.tipoItem)
                 {
                     case Item.TipoItem.MOEDA:
+                        //DeveDesaparecer = true;
+                        DeveDesaparecer = inventario.AddItem(DanoObjeto);
+                        break;
+
+                    case Item.TipoItem.POCAO1:
+                        //DeveDesaparecer = true;
+                        DeveDesaparecer = inventario.AddItem(DanoObjeto);
+                        break;
+
+                    case Item.TipoItem.POCAO2:
+                        //DeveDesaparecer = true;
+                        DeveDesaparecer = inventario.AddItem(DanoObjeto);
+                        break;
+
+                    case Item.TipoItem.POKEBOLA:
+                        //DeveDesaparecer = true;
+                        DeveDesaparecer = inventario.AddItem(DanoObjeto);
+                        break;
+
+                    case Item.TipoItem.VELA:
                         //DeveDesaparecer = true;
                         DeveDesaparecer = inventario.AddItem(DanoObjeto);
                         break;

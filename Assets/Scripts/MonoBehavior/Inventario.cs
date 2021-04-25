@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Inventario : MonoBehaviour
 {
+    public int contador;
     public GameObject slotPrefab;       //Objeto que recebe o prefab Slot
     public const int numSlots = 5;      //Número fixo de Slots
     Image[] itemImagens = new Image[numSlots]; //Array de imagens
     Item[] itens = new Item[numSlots]; //Array de itens
     GameObject[] slots = new GameObject[numSlots]; //Array de Slots
+    private bool missaoCumprida = false;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +38,7 @@ public class Inventario : MonoBehaviour
 
     public bool AddItem(Item itemToAdd)
     {
+        contador++;
         for (int i =0; i<itens.Length; i++)
         {
             if (itens[i] != null && itens[i].tipoItem == itemToAdd.tipoItem && itemToAdd.empilhavel == true)
@@ -56,5 +60,20 @@ public class Inventario : MonoBehaviour
             }
         }
         return false;
+    }
+
+    private void Update()
+    {
+        if (contador >= 5 && !missaoCumprida)
+        {
+            contador = 0;
+            MissaoCumprida();
+        }
+    }
+
+    public void MissaoCumprida()
+    {
+        missaoCumprida = true;
+        RPGGameManager.GerenciadorDeCena();
     }
 }
